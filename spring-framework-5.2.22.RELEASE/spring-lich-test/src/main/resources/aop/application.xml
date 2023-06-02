@@ -1,0 +1,30 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<!-- 基于配置 -->
+	<!-- 接口 -->
+	<bean id="userService" class="cn.lichenghao.aop.jdk.service.impl.UserServiceImpl"></bean>
+	<!-- 通知类 -->
+	<bean id="aopLogger" class="cn.lichenghao.aop.AopLogger"></bean>
+
+	<!-- <aop:config proxy-target-class="true"> -->
+	<aop:config>
+		<!-- 切点 -->
+		<aop:pointcut id="logOperation" expression="execution(* cn.lichenghao.aop.jdk.service.impl.*.*(..))"/>
+		<!-- 切面 -->
+		<aop:aspect ref="aopLogger">
+			<!-- 通知类型 前置、后置、异常、最终通知-->
+			<aop:before method="beforeOrgLogger" pointcut-ref="logOperation"></aop:before>
+			<!--<aop:after-returning method="afterReturnOrgLogger" pointcut-ref="logOperation"></aop:after-returning>
+			<aop:after-throwing method="throwOrgLogger" pointcut-ref="logOperation"></aop:after-throwing>
+			<aop:after method="afterOrgLogger" pointcut-ref="logOperation"></aop:after>-->
+			<!-- 环绕通知 -->
+			<!--<aop:around method="aroundOrgLogger" pointcut-ref="logOperation"></aop:around>-->
+		</aop:aspect>
+	</aop:config>
+</beans>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+		xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="student" class="cn.lichenghao.entity.s.Student">
+		<property name="teacher" ref="teacher"></property>
+	</bean>
+	<bean id="teacher" class="cn.lichenghao.entity.s.Teacher">
+		<property name="student" ref="student"></property>
+	</bean>
+	<bean id="director" class="cn.lichenghao.entity.s.Director">
+		<constructor-arg name="name" value="张三"/>
+		<constructor-arg name="teacher" ref="teacher"/>
+	</bean>
+</beans>

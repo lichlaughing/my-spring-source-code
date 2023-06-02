@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+		targetNamespace="http://www.lichenghao.cn/schema/mytag/spring-mytag"
+		xmlns:tns="http://www.lichenghao.cn/schema/mytag/spring-mytag"
+		elementFormDefault="qualified">
+	<element name="keyboard">
+		<complexType>
+			<attribute name="id" type="string"/>
+			<attribute name="name" type="string"/>
+			<attribute name="color" type="string"/>
+		</complexType>
+	</element>
+</schema>

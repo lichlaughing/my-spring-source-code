@@ -1,0 +1,39 @@
+package cn.lichenghao.populateBean.entity;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class Dog {
+	private String name;
+	private Integer age;
+
+	public Dog() {
+		System.out.println("Dog init!!");
+	}
+
+	public Dog(String name, Integer age) {
+		System.out.println("Dog init!!");
+		this.name = name;
+		this.age = age;
+	}
+
+	public void say() {
+		System.out.println("wwwwwwwww");
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Integer getAge() {
+		return age;
+	}
+
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+}

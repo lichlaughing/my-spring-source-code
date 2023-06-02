@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "https://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+	<bean id="validEmptyWithDescription" class="org.springframework.beans.testfixture.beans.TestBean">
+		<description>
+			I have no properties and I'm happy without them.
+		</description>
+	</bean>
+	<bean id="aliased" class="  org.springframework.beans.testfixture.beans.TestBean  " name="myalias">
+		<property name="name">
+			<value>aliased</value>
+		</property>
+	</bean>
+
+	<alias name="aliased" alias="youralias"/>
+
+	<alias name="multiAliased" alias="alias3"/>
+
+	<bean id="multiAliased" class="org.springframework.beans.testfixture.beans.TestBean" name="alias1,alias2">
+		<property name="name">
+			<value>aliased</value>
+		</property>
+	</bean>
+</beans>
