@@ -235,8 +235,7 @@ public class ContextLoader {
 	 * to initialize the application context used by this {@code ContextLoader}.
 	 * @since 4.2
 	 * @see #configureAndRefreshWebApplicationContext
-	 * @see #customizeContext
-	 */
+	 * @see #customizeContext	 */
 	@SuppressWarnings("unchecked")
 	public void setContextInitializers(@Nullable ApplicationContextInitializer<?>... initializers) {
 		if (initializers != null) {
