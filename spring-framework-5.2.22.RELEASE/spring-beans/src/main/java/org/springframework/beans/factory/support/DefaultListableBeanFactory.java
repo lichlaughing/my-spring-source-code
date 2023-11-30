@@ -525,6 +525,14 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 		return getBeanNamesForType(type, true, true);
 	}
 
+	/**
+	 * 查找bean
+	 *
+	 * @param type                 bean的类型
+	 * @param includeNonSingletons 是否考虑非单例的bean
+	 * @param allowEagerInit       是否允许提前初始化
+	 * @return bean名称数组
+	 */
 	@Override
 	public String[] getBeanNamesForType(@Nullable Class<?> type, boolean includeNonSingletons, boolean allowEagerInit) {
 		// isConfigurationFrozen：表示已经加载的bean定义是否允许修改

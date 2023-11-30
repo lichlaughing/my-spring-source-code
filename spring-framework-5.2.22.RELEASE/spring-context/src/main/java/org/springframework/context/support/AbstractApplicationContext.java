@@ -706,10 +706,11 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 
 		// Configure the bean factory with context callbacks.
 		/**
-		 * 将当前的ApplicationContext 交给 ApplicationContextAwareProcessor类处理。beanFactory中使用一个集合存放这些扩展类。
+		 * 增加BeanPostProcessor，这是bean实例化时期的扩展点。这里主要用来在bean实例化前处理Aware相关接口。
 		 */
 		beanFactory.addBeanPostProcessor(new ApplicationContextAwareProcessor(this));
-		// 因为 ApplicationContextAwareProcessor 处理了以下接口，所以这里就直接忽略掉
+
+		// 因为上面的ApplicationContextAwareProcessor处理了以下接口，所以取消这些bean的自动装配
 		beanFactory.ignoreDependencyInterface(EnvironmentAware.class);
 		beanFactory.ignoreDependencyInterface(EmbeddedValueResolverAware.class);
 		beanFactory.ignoreDependencyInterface(ResourceLoaderAware.class);
@@ -741,6 +742,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		 * LTW,通过特殊的类加载器来代理JVM默认的类加载器实现。
 		 */
 		if (beanFactory.containsBean(LOAD_TIME_WEAVER_BEAN_NAME)) {
+			// 在 Bean 初始化之前检查 Bean 是否实现了 LoadTimeWeaverAware 接口，如果是，则进行加载时织入。
 			beanFactory.addBeanPostProcessor(new LoadTimeWeaverAwareProcessor(beanFactory));
 			// Set a temporary ClassLoader for type matching.
 			beanFactory.setTempClassLoader(new ContextTypeMatchClassLoader(beanFactory.getBeanClassLoader()));
