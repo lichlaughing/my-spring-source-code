@@ -198,11 +198,12 @@ final class PostProcessorRegistrationDelegate {
 		// a bean is not eligible for getting processed by all BeanPostProcessors.
 		/**
 		 * 这里的计数分三个部分：
-		 * 1.beanFactory.getBeanPostProcessorCount()：这些来自prepareBeanFactory阶段注册的
-		 * 2.+1 ： 这是下面要注册的一个BeanPostProcessorChecker，用来记录写日志信息
-		 * 3.postProcessorNames.length：这些就是我们自己通过接口注册的
+		 * 1.beanFactory.getBeanPostProcessorCount()，可以从postProcessBeanFactory()阶段注册
+		 * 2.+1 ： 因为下面紧接着注册了一个BeanPostProcessorChecker
+		 * 3.postProcessorNames.length：这些就是我们自定义的
 		 */
 		int beanProcessorTargetCount = beanFactory.getBeanPostProcessorCount() + 1 + postProcessorNames.length;
+		// 注册的一个BeanPostProcessorChecker，用于每个bean实例化后做一些检查、记录写日志信息等
 		beanFactory.addBeanPostProcessor(new BeanPostProcessorChecker(beanFactory, beanProcessorTargetCount));
 
 		// Separate between BeanPostProcessors that implement PriorityOrdered,
